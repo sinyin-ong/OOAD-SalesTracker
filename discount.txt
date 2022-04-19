@@ -1,0 +1,6 @@
+001 | Easter Discount | EASTERFOOD | Food | 10 | 0 | This is a discount for easter |
+002 | Easter Discount | EASTERDRINK | Drink | 0 | 10 | This is a discount for easter |
+003 | Hari Raya Discount | RAYAFOOD | Food | 20 | 0 | This is a discount for hari raya |
+004 | Hari Raya Discount | RAYADRINK | Drink | 0 | 20 | This is a discount for hari raya |
+005 | Special Discount | JOMMAKAN | Bundled | 10 | 10 | This is a special discount |
+006 | Special Discount | JOMMEAL | Bundled | 20 | 20 | This is a special discount |

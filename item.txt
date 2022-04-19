@@ -1,0 +1,14 @@
+001 | Grilled Chicken Chop | Food | 13.50 |
+002 | Lamb Chop | Food | 32.80 |
+003 | Fish & Chips | Food | 15.45 |
+004 | Spaghetti Carbonara | Food | 14.95 |
+005 | Tuna Sandwich | Food | 8.20 |
+006 | Salad | Food | 9.80 |
+007 | Aloha Pizza | Food | 15.70 |
+008 | Prawn Burger | Food | 20.50 |
+009 | Green Tea | Drink | 5.80 |
+010 | Ice Lemon Tea | Drink | 4.80 |
+011 | Milk Shake | Drink | 10.90 |
+012 | Latte | Drink | 8.90 |
+013 | Mocha | Drink | 9.80 |
+014 | Drinking Water | Drink | 0.50 |
