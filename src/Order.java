@@ -52,50 +52,50 @@ public class Order {
     return this.totalPrice;
   }
 
-  // public void setTotalDiscount (double totalDiscount) {
-  //   this.totalDiscount = totalDiscount;
-  // }
-
-  // public double getTotalDiscount () {
-  //   return this.totalDiscount;
-  // }
+  public double getTotalDiscount () {
+    return this.totalDiscount;
+  }
 
   public void updatePrice () {
     this.totalPrice = 0.0;
-    System.out.println("Pls work ");
+    this.totalDiscount = 0.0;
+
     if(discount != null) {
-      System.out.println("discount.getDiscountType(): "+discount.getDiscountType());
       if(discount.getDiscountType().equals("Food")) {
         for (int i = 0; i < itemList.size(); i++) {
           if(itemList.get(i).getType().equals("Food")) {
-            this.totalPrice += itemList.get(i).getPrice() - (itemList.get(i).getPrice() * (discount.getDiscountPercForFood() / 100));
+            this.totalDiscount += itemList.get(i).getPrice() - (itemList.get(i).getPrice() * (discount.getDiscountPercForFood() / 100));
           }else {
-            this.totalPrice += itemList.get(i).getPrice();
+            this.totalDiscount += itemList.get(i).getPrice();
           }
+
+          this.totalPrice += itemList.get(i).getPrice();
         }
       }else if(discount.getDiscountType().equals("Drink")) {
         for (int i = 0; i < itemList.size(); i++) {
           if(itemList.get(i).getType().equals("Drink")) {
-            this.totalPrice += itemList.get(i).getPrice() - (itemList.get(i).getPrice() * (discount.getDiscountPercForDrink() / 100));
+            this.totalDiscount += itemList.get(i).getPrice() - (itemList.get(i).getPrice() * (discount.getDiscountPercForDrink() / 100));
           }else {
-            this.totalPrice += itemList.get(i).getPrice();
+            this.totalDiscount += itemList.get(i).getPrice();
           }
+
+          this.totalPrice += itemList.get(i).getPrice();
         }
       }else if(discount.getDiscountType().equals("Bundled")) {
         for (int i = 0; i < itemList.size(); i++) {
           if(itemList.get(i).getType().equals("Drink")) {
-            this.totalPrice += itemList.get(i).getPrice() * (discount.getDiscountPercForDrink() / 100);
+            this.totalDiscount += itemList.get(i).getPrice() * (discount.getDiscountPercForDrink() / 100);
           } else if(itemList.get(i).getType().equals("Food")) {
-            this.totalPrice += itemList.get(i).getPrice() * (discount.getDiscountPercForFood() / 100);
+            this.totalDiscount += itemList.get(i).getPrice() * (discount.getDiscountPercForFood() / 100);
           }
+
+          this.totalPrice += itemList.get(i).getPrice();
         }
       }
-
-      System.out.println("Total price: " + this.totalPrice);
     }else {
-      System.out.println("Oh no");
       for (Item item : this.itemList) {
         this.totalPrice += item.getPrice();
+        this.totalDiscount += item.getPrice();
       }
     }
   }

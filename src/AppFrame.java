@@ -72,7 +72,6 @@ public class AppFrame extends JFrame{
         for (int i=0; i<ItemList.getItems().length; i++)
         {
             JPanel tempPanel = new JPanel();
-            JPanel tempOrderPanel = new JPanel();
             JButton addButton = new JButton("Add");
             String currentItemType = ItemList.getItems()[i].getType();
             int foodCount=0;
@@ -86,27 +85,29 @@ public class AppFrame extends JFrame{
                 JLabel orderPrice = new JLabel("RM"+String.valueOf(ItemList.getItems()[i].getPrice()));
                 String currentFood = ItemList.getItems()[i].getName();
 
-//                tempPanel.setLayout(new FlowLayout());
                 tempPanel.add(foodName[foodCount]);
                 tempPanel.add(foodPrice[foodCount]);
                 tempPanel.add(addButton);
-                foodPanel.add(tempPanel);
 
+                foodPanel.add(tempPanel);
                 foodPanel.revalidate();
                 foodPanel.repaint();
 
                 addButton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        tempOrderPanel.add(orderFood);
-                        tempOrderPanel.add(orderPrice);
+                        JLabel tempOrderFood = new JLabel(ItemList.getItems()[count].getName());
+                        JLabel tempOrderPrice = new JLabel("RM"+String.valueOf(ItemList.getItems()[count].getPrice()));
+                        JPanel tempOrderPanel = new JPanel();
+                        tempOrderPanel.add(tempOrderFood);
+                        tempOrderPanel.add(tempOrderPrice);
                         orderPanel.add(tempOrderPanel);
                         orderPanel.revalidate();
                         orderPanel.repaint();
 
                         myOrder.addItem(ItemList.getItems()[count]);
                         subTotalValue.setText("RM "+String.valueOf(myOrder.getTotalPrice()));
-                        totalValue.setText("RM "+String.valueOf(myOrder.getTotalPrice()));
+                        totalValue.setText("RM "+String.valueOf(myOrder.getTotalDiscount()));
                     }
                 });
 
@@ -122,24 +123,26 @@ public class AppFrame extends JFrame{
                 tempPanel.add(drinkName[drinkCount]);
                 tempPanel.add(drinkPrice[drinkCount]);
                 tempPanel.add(addButton);
-                drinkPanel.add(tempPanel);
 
+                drinkPanel.add(tempPanel);
                 drinkPanel.revalidate();
                 drinkPanel.repaint();
 
                 addButton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        tempOrderPanel.add(orderDrink);
-                        tempOrderPanel.add(orderPrice);
-//                        tempOrderPanel.add(orderQuantity);
+                      JLabel tempOrderDrink = new JLabel(ItemList.getItems()[count].getName());
+                        JLabel tempOrderPrice = new JLabel("RM"+String.valueOf(ItemList.getItems()[count].getPrice()));
+                        JPanel tempOrderPanel = new JPanel();
+                        tempOrderPanel.add(tempOrderDrink);
+                        tempOrderPanel.add(tempOrderPrice);
                         orderPanel.add(tempOrderPanel);
                         orderPanel.revalidate();
                         orderPanel.repaint();
 
                         myOrder.addItem(ItemList.getItems()[count]);
                         subTotalValue.setText("RM "+String.valueOf(myOrder.getTotalPrice()));
-                        totalValue.setText("RM "+String.valueOf(myOrder.getTotalPrice()));
+                        totalValue.setText("RM "+String.valueOf(myOrder.getTotalDiscount()));
                     }
                 });
 
@@ -152,18 +155,15 @@ public class AppFrame extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 String code = couponCode.getText();
                 Boolean couponFound = Discount.checkDiscount(code);
-
-                System.out.println("couponFound: "+couponFound);
                 if(couponFound){
-
                     System.out.println("Yes hi");
 //                    discountValue.setText(Discount.get);
                     Discount newDisc = Discount.createNewDiscount(code);
                     myOrder.setDiscount(newDisc);
                     myOrder.updatePrice();
 
-
-                    totalValue.setText("RM "+String.valueOf(myOrder.getTotalPrice()));
+                    subTotalValue.setText("RM "+String.valueOf(myOrder.getTotalPrice()));
+                    totalValue.setText("RM "+String.valueOf(myOrder.getTotalDiscount()));
 
                     if(newDisc.getDiscountType().equals("Food")) {
                         discountValue.setText(String.valueOf(newDisc.getDiscountPercForFood()+"% (Food only)"));
@@ -276,11 +276,8 @@ public class AppFrame extends JFrame{
 
         orderWrapper.setLayout(new BorderLayout());
         orderWrapper.add(orderTitlePanel, BorderLayout.NORTH);
-        orderWrapper.add(orderPanel, BorderLayout.CENTER);
+        orderWrapper.add(new JScrollPane(orderPanel), BorderLayout.CENTER);
         orderWrapper.add(billPanel, BorderLayout.SOUTH);
-
-
-
 
         orderTitlePanel.add(orderTitle);
         orderPanel.add(orderList);
