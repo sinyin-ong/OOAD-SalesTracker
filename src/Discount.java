@@ -29,6 +29,10 @@ public class Discount {
     return discountType;
   }
 
+  public String getDiscountName () {
+    return discountName;
+  }
+
   @Override
   public String toString() {
     return discountCode;

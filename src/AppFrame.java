@@ -8,7 +8,8 @@ public class AppFrame extends JFrame{
 
     private int totalFood = 0;
     private int totalDrink = 0;
-//    private int totalItem = ItemList.getItems().length;
+
+    JButton checkout = new JButton("Checkout");
 
     public AppFrame(Order myOrder){
 
@@ -31,7 +32,7 @@ public class AppFrame extends JFrame{
         JTextField couponCode = new JTextField("Enter coupon code");
 
 
-        JButton checkout = new JButton("Checkout");
+        
         JButton applyCoupon = new JButton("Apply Coupon");
 
         JLabel topBar = new JLabel("Menu");
