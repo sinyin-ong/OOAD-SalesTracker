@@ -84,9 +84,9 @@ public class Order {
       }else if(discount.getDiscountType().equals("Bundled")) {
         for (int i = 0; i < itemList.size(); i++) {
           if(itemList.get(i).getType().equals("Drink")) {
-            this.totalDiscount += itemList.get(i).getPrice() * (discount.getDiscountPercForDrink() / 100);
+            this.totalDiscount += itemList.get(i).getPrice() - (itemList.get(i).getPrice() * (discount.getDiscountPercForDrink() / 100)) ;
           } else if(itemList.get(i).getType().equals("Food")) {
-            this.totalDiscount += itemList.get(i).getPrice() * (discount.getDiscountPercForFood() / 100);
+            this.totalDiscount += itemList.get(i).getPrice() - (itemList.get(i).getPrice() * (discount.getDiscountPercForFood() / 100)) ;
           }
 
           this.totalPrice += itemList.get(i).getPrice();

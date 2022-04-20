@@ -7,6 +7,11 @@ import java.util.List;
 import javax.swing.*;
 
 public class ReceiptFrame extends JFrame {
+
+  public JPanel billInfo = new JPanel();
+  public JLabel discountLabel = new JLabel("Discount price");
+  public JLabel discountValue;
+
   public ReceiptFrame(Order order) {
     setTitle("Receipt");
     setLayout(new BorderLayout());
@@ -16,20 +21,20 @@ public class ReceiptFrame extends JFrame {
     JPanel tablePanel = new JPanel();
     JPanel summaryPanel = new JPanel();
     JPanel billPanel = new JPanel();
-    JPanel billInfo = new JPanel();
+
 
     JLabel headerLabel = new JLabel("Receipt");
     JLabel subtotalLabel = new JLabel("Subtotal");
     JLabel subTotalValue = new JLabel(NumberFormat.getCurrencyInstance().format(order.getTotalPrice()));
-    JLabel discountLabel = new JLabel("Discount");
-    JLabel discountValue;
+    JLabel totaLabel = new JLabel("Total Bill");
+    JLabel totalValue = new JLabel(NumberFormat.getCurrencyInstance().format(order.getTotalDiscount()));
+
     if(order.getDiscount() != null) {
-      discountValue = new JLabel((String) order.getDiscount().getDiscountName());
+      discountValue = new JLabel(NumberFormat.getCurrencyInstance().format(order.getTotalDiscount()-order.getTotalPrice()));
     } else {
       discountValue = new JLabel("N/A");
     }
-    JLabel totaLabel = new JLabel("Total");
-    JLabel totalValue = new JLabel(NumberFormat.getCurrencyInstance().format(order.getTotalDiscount()));
+
 
     String[] columns = {"Item Name", "Price"};
     Object [][] data = new Object[order.getCurrentItems().length][2];

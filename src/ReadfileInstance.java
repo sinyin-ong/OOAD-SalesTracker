@@ -7,8 +7,8 @@ import java.util.ArrayList;
 public class ReadfileInstance {
   private String fileName;
   private Scanner inputFile;
+  private int numOfData;
   public List<Object> datas = new ArrayList<Object>();
-  private int numOfData; 
 
   public ReadfileInstance(String fileName) {
     try {

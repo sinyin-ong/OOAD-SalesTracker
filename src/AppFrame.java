@@ -9,7 +9,7 @@ public class AppFrame extends JFrame{
     private int totalFood = 0;
     private int totalDrink = 0;
 
-    JButton checkout = new JButton("Checkout");
+    public JButton checkout = new JButton("Checkout");
 
     public AppFrame(Order myOrder){
 
